@@ -2,32 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    text-rendering: optimizeLegibility;
+    background-color: var(--bg-color);
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+html.light {
+    --bg-color: theme('colors.zinc.50');
+}
+
+html.dark {
+    --bg-color: theme('colors.primary.900');
+}
+
+[data-radix-popper-content-wrapper] {
+    z-index: 99999 !important;
+}
+
+[data-floating-ui-portal] {
+    z-index: 100000;
+}
+
+::selection {
+    background-color: theme('colors.lime.500');
+    color: theme('colors.lime.950');
+}
+
+@keyframes typing-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
